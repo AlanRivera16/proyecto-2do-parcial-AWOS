@@ -26,7 +26,8 @@ let usuarioSchema = new Schema({
     },
     //Estado del usuario Activo o Inactivo
     estado: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     google: {
         type: Boolean,
