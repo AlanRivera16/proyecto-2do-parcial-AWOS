@@ -59,7 +59,7 @@ app.post('/productos',(req, res) =>{
 
 app.put('/productos/:id', (req, res)=>{
     let id = req.params.id;
-    let body = _.pick(req.body, ['nombre', 'precioU', 'categoria']);
+    let body = _.pick(req.body, ['nombre', 'precioU', 'categoria', 'disponible', 'usuario']);
 
     Productos.findByIdAndUpdate(id, body, 
         {new:true, runValidators:true, context:'query'}, (err, proDB)=>{

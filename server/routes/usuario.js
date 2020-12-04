@@ -9,7 +9,7 @@ const app = express();
       let desde = req.query.desde || 0;
       let hasta = req.query.hasta || 5;
 
-    Usuario.find({ })
+    Usuario.find({ estado:true })
     .skip(Number(desde))
     .limit(Number(hasta))
     .exec((err, usuarios) => { //Esto es como una instrucción SQL y la leemos de derech a izqui "Usuarios.find({})... | Select *from Usuario"
@@ -33,6 +33,7 @@ const app = express();
     let body = req.body;
     let usr = new Usuario({
       nombre: body.nombre,
+      apellido: body.apellido,
       email: body.email,
       password: bcrypt.hashSync(body.password, 5)
     });
@@ -56,7 +57,7 @@ const app = express();
   });
   app.put('/usuario/:id', function (req, res){
       let id = req.params.id;
-      let body = _.pick(req.body, ['nombre','email']); //pick: seleccionar
+      let body = _.pick(req.body, ['nombre','email, apellido']); //pick: seleccionar
 
       Usuario.findByIdAndUpdate(id, body, 
         {new:true, runValidators: true, context: 'query' }, 
