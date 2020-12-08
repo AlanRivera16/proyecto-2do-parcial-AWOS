@@ -10,8 +10,7 @@ app.get('/productos', (req, res) => {
     Productos.find({})
     .skip(Number(desde))
     .limit(Number(hasta))
-    .populate('usuario', 'nombre')
-    .populate('categoria', 'descripcion')
+    .populate({path:'usuario', select:'nombre'},{path:'categoria', select:'descripcion'})
     .exec((err, productos) => {
         if(err){
         return res.status(400).json({
