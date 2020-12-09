@@ -75,19 +75,19 @@ app.put('/categoria/:id', (req, res)=>{
 app.delete('/categoria/:id', (req, res) =>{
     let id = req.params.id
 
-    Categoria.deleteOne(id, {context: 'query'}, (err, catDB) =>{
+    Categoria.deleteOne({_id: id}, (err, categoriaEliminada) =>{
         if(err){
-            return res.json({
+            return res.status(400).json({
                 ok: false,
-                msg:'Ocurrio uyn errror al momento de eliminar',
+                msg:'Ocurrio un errror al momento de eliminar',
                 err
-            })
+            });
         }
 
         res.json({
             ok:true,
             msg:'Categiría fue eliminada con éxito',
-            catDB
+            categoriaEliminada
         })
     }); 
 });
