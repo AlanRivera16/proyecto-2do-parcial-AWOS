@@ -75,7 +75,7 @@ app.put('/categoria/:id', (req, res)=>{
 app.delete('/categoria/:id', (req, res) =>{
     let id = req.params.id
 
-    Categoria.findByIdAndRemove(id, {context: 'query'}, (err, catDB) =>{
+    Categoria.deleteOne(id, {context: 'query'}, (err, catDB) =>{
         if(err){
             return res.json({
                 ok: false,

@@ -81,7 +81,7 @@ app.put('/productos/:id', (req, res)=>{
 app.delete('/productos/:id', (req, res) =>{
     let id = req.params.id
 
-    Productos.findByIdAndRemove(id, {context: 'query'}, (err, proDB) =>{
+    Productos.deleteOne(id, {context: 'query'}, (err, proDB) =>{
         if(err){
             return res.json({
                 ok: false,
