@@ -57,7 +57,7 @@ const app = express();
   });
   app.put('/usuario/:id', function (req, res){
       let id = req.params.id;
-      let body = _.pick(req.body, ['nombre','email, apellido']); //pick: seleccionar
+      let body = _.pick(req.body, ['nombre','email', 'apellido']); //pick: seleccionar
 
       Usuario.findByIdAndUpdate(id, body, 
         {new:true, runValidators: true, context: 'query' }, 
