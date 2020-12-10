@@ -81,9 +81,9 @@ app.put('/productos/:id', (req, res)=>{
 app.delete('/productos/:id', (req, res) =>{
     let id = req.params.id
 
-    Productos.deleteOne(id, {context: 'query'}, (err, proDB) =>{
+    Productos.deleteOne({_id: id}, (err, productoEliminado) =>{
         if(err){
-            return res.json({
+            return res.status(400).json({
                 ok: false,
                 msg:'Ocurrio uyn errror al momento de eliminar',
                 err
@@ -93,7 +93,7 @@ app.delete('/productos/:id', (req, res) =>{
         res.json({
             ok:true,
             msg:'Producto fue eliminado con éxito',
-            proDB
+            productoEliminado
         })
     }); 
 });
