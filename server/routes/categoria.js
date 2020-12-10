@@ -3,7 +3,7 @@ const _ = require('underscore');
 const app = express();
 const Categoria = require('../models/categoria');
 
-app.get('/categoria', (req, res) => {
+app.get('/categoria', function(req, res) {
     let desde = req.query.desde || 0;
     let hasta = req.query.hasta || 0;
 
@@ -72,8 +72,8 @@ app.put('/categoria/:id', (req, res)=>{
             });
     }); 
 });
-app.delete('/categoria/:id', (req, res) =>{
-    let id = req.params.id
+app.delete('/categoria/:id', function(req, res) {
+    let id = req.params.id;
 
     Categoria.deleteOne({_id: id}, (err, categoriaEliminada) =>{
         if(err){
